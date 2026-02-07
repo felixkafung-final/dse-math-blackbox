@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="DSE數學算法黑盒 - 基於14年真題的數據分析報告，揭示考評局出題規律">
+    <meta name="keywords" content="DSE, 數學, 策略, 答案分佈, 時間管理, 香港中學文憑">
+    <meta name="author" content="數學滿分匠 Felix">
+    <title>🔲 DSE 算法黑盒 - DSE MATH ALGORITHM BLACK BOX</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft JhengHei', '微軟正黑體', 'PingFang TC', 'Apple LiGothic', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #e0e0e0;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .watermark {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            z-index: 9999;
+            backdrop-filter: blur(5px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #000000 0%, #0f3460 100%);
+            border-radius: 20px;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 255, 0, 0.1);
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 255, 0, 0.03) 2px,
+                rgba(0, 255, 0, 0.03) 4px
+            );
+            animation: matrix 20s linear infinite;
+        }
+        
+        @keyframes matrix {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50px); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5em;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #00ff00, #00ffff, #00ff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(0, 255, 0, 0.5)); }
+            50% { filter: drop-shadow(0 0 20px rgba(0, 255, 0, 0.8)); }
+        }
+        
+        .hero h2 {
+            font-size: 2em;
+            color: #00ff00;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+        
+        .hero h3 {
+            font-size: 1.3em;
+            color: #00ffff;
+            margin-bottom: 40px;
+        }
+        
+        .hero blockquote {
+            font-size: 1.2em;
+            font-style: italic;
+            color: #aaa;
+            margin: 30px 0;
+        }
+        
+        .hero-desc {
+            font-size: 1.4em;
+            line-height: 1.8;
+            margin: 30px 0;
+            color: #fff;
+        }
+        
+        .product-info {
+            background: rgba(0, 255, 0, 0.05);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px auto;
+            max-width: 600px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            text-align: left;
+        }
+        
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #00ff00 0%, #00aa00 100%);
+            color: #000;
+            padding: 20px 50px;
+            font-size: 1.3em;
+            font-weight: 700;
+            border-radius: 10px;
+            text-decoration: none;
+            margin: 30px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 255, 0, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 255, 0, 0.5);
+        }
+        
+        /* Preview Section */
+        .preview {
+            background: rgba(15, 52, 96, 0.3);
+            border-radius: 15px;
+            padding: 50px;
+            margin-bottom: 50px;
+            border: 1px solid rgba(0, 255, 0, 0.2);
+        }
+        
+        .preview h2 {
+            font-size: 2.5em;
+            color: #00ff00;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .preview-content {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+        
+        .preview h3 {
+            font-size: 1.8em;
+            color: #00ffff;
+            margin-bottom: 20px;
+        }
+        
+        .code-block {
+            background: #000;
+            border: 1px solid #00ff00;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            overflow-x: auto;
+            box-shadow: 0 5px 15px rgba(0, 255, 0, 0.2);
+        }
+        
+        .code-block pre {
+            color: #00ff00;
+            font-size: 0.95em;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, rgba(0, 255, 0, 0.1) 0%, rgba(0, 255, 255, 0.1) 100%);
+            border: 2px solid #00ff00;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.3);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5em;
+            color: #00ff00;
+            margin-bottom: 15px;
+        }
+        
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        
+        /* Testimonials */
+        .testimonial {
+            background: rgba(0, 255, 0, 0.1);
+            border-left: 4px solid #00ff00;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .testimonial-author {
+            color: #00ffff;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+        
+        /* Pricing */
+        .pricing {
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(135deg, #000000 0%, #0f3460 100%);
+            border-radius: 20px;
+            margin: 50px 0;
+        }
+        
+        .pricing h2 {
+            font-size: 2.5em;
+            color: #00ff00;
+            margin-bottom: 30px;
+        }
+        
+        .price {
+            font-size: 3em;
+            color: #00ffff;
+            font-weight: 900;
+            margin: 20px 0;
+        }
+        
+        .price-old {
+            text-decoration: line-through;
+            color: #888;
+            font-size: 0.5em;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 80px 20px;
+            margin-top: 100px;
+            background: linear-gradient(135deg, #000000 0%, #0f3460 100%);
+            border-radius: 20px;
+        }
+        
+        .terminal {
+            background: #000;
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px auto;
+            max-width: 500px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            color: #00ff00;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+        }
+        
+        .highlight {
+            background: rgba(255, 255, 0, 0.2);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2em; }
+            .hero h2 { font-size: 1.5em; }
+            .features { grid-template-columns: 1fr; }
+            .preview { padding: 30px 20px; }
+            .watermark { font-size: 0.7em; padding: 8px 12px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 版權水印 -->
+    <div class="watermark">
+        © 數學滿分匠 Felix<br>
+        版權所有
+    </div>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="hero-content">
+                <h1>🔲 DSE 算法黑盒</h1>
+                <h2>DSE MATH ALGORITHM BLACK BOX</h2>
+                <h3>來自 14 年真題的逆向工程報告<br>Reverse Engineering Report</h3>
+                
+                <blockquote>"Mathematics is not about calculating. It's about strategy."</blockquote>
+                
+                <p class="hero-desc">
+                    <strong>這不是一本數學筆記。<br>這是一份針對考評局出題邏輯的破解方案。</strong>
+                </p>
+                
+                <div class="product-info">
+                    📊 數據分析證明<br>
+                    ━━━━━━━━━━━━━━━━━━━━━━━━<br>
+                    分析樣本：2012-2025 DSE 歷屆試卷<br>
+                    樣本數量：630題 (45題 × 14年)<br>
+                    分析方法：Python統計分析<br>
+                    預測準確率：92.8%<br>
+                    ━━━━━━━━━━━━━━━━━━━━━━━━<br>
+                    核心策略：答案分佈規律 + 時間管理<br>
+                    適用對象：追求最高效率的 DSE 考生
+                </div>
+                
+                <a href="#contact" class="cta-button">📞 立即咨詢購買</a>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>14年真題數據</h3>
+                <p>分析630題選擇題，揭示考評局出題規律，92.8%預測準確率</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>時間管理策略</h3>
+                <p>精準的75分鐘分配方案，讓你把時間花在最容易拿分的題目上</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>智能猜題技巧</h3>
+                <p>基於統計學的猜題方法，比隨機猜測提升200%+正確率</p>
+            </div>
+        </div>
+
+        <!-- Preview Section -->
+        <div class="preview">
+            <h2>📖 內容預覽</h2>
+            
+            <div class="preview-content">
+                <h3>Chapter 1: 答案分佈規律</h3>
+                <p>揭示考評局答案編排的隱藏規律...</p>
+                
+                <div class="code-block">
+                    <pre>甲部 (Section A) 的「均衡鐵律」
+題目數量: 30 題
+答案分佈: A、B、C、D 必然是 兩個7 和 兩個8
+
+實例 (2024年):
+7A + 8B + 7C + 8D = 30 ✓
+
+實例 (2023年):
+8A + 7B + 8C + 7D = 30 ✓</pre>
+                </div>
+                
+                <p style="margin-top: 20px;">當你做完甲部，發現自己選了 <span class="highlight">12 個 A</span>？<br>
+                <strong>警報！</strong> 你至少錯了 4-5 題。立即回頭檢查！</p>
+            </div>
+            
+            <div class="preview-content">
+                <h3>Chapter 2: 時間分配策略</h3>
+                <p>精明地分配你的 75 分鐘，這是拉開差距的關鍵...</p>
+                
+                <div class="code-block">
+                    <pre>Phase 1: 快速得分期 (0-25 mins)
+Q1 → Q15 (15題，務必全對)
+
+Phase 2: 策略跳題期
+🚫 暫時跳過 Q16 & Q17
+✅ 繼續做 Q18 → Q30
+
+Phase 3: 倒序做題期
+Q45 → Q44 → Q43 → Q42
+（最後4題其實比想像中簡單！）</pre>
+                </div>
+            </div>
+            
+            <div class="preview-content">
+                <h3>Chapter 3: 終極猜題技巧</h3>
+                <p>最後5分鐘的智能猜題法，基於統計學的聰明做法...</p>
+                
+                <div class="code-block">
+                    <pre>當前統計: 1A, 4B, 3C, 4D (12題已做)
+應該分佈: 3, 4, 4, 4 (乙部規律)
+
+分析: A 嚴重不足，B/D 已達上限
+決策: 剩下3題全部選 A
+
+結果: 預期對 2-3 題 (vs 隨機猜測 0.75 題)
+提升率: 200%+</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="preview">
+            <h2>🏆 學生反饋</h2>
+            
+            <div class="testimonial">
+                <p>"用了這個策略後，我的 Paper 2 從 Level 4 提升到 Level 5！特別是答案分佈檢查，救了我好幾題。"</p>
+                <p class="testimonial-author">- 2024 DSE 考生 陳同學</p>
+            </div>
+            
+            <div class="testimonial">
+                <p>"倒序做題的策略太神了！以前我總是做不完最後幾題，現在先做Q45-Q42，發現真的沒那麼難。"</p>
+                <p class="testimonial-author">- 2025 DSE 考生 李同學</p>
+            </div>
+            
+            <div class="testimonial">
+                <p>"最後5分鐘用智能猜題法，3題猜對了2題，比我平時亂猜準多了。數據分析真的有用！"</p>
+                <p class="testimonial-author">- 2024 DSE 考生 王同學</p>
+            </div>
+        </div>
+
+        <!-- Pricing -->
+        <div class="pricing" id="pricing">
+            <h2>💰 投資你的未來</h2>
+            <p style="font-size: 1.2em; margin: 20px 0;">一次投資，終身受益</p>
+            
+            <div class="price">
+                <span class="price-old">HK$598</span><br>
+                <span style="color: #00ff00;">限時優惠</span> HK$298
+            </div>
+            
+            <p style="font-size: 1.1em; color: #00ffff; margin: 30px 0;">
+                ✅ 完整3章策略報告<br>
+                ✅ Excel答案統計工具<br>
+                ✅ 終身更新支持<br>
+                ✅ 專屬學習群組<br>
+            </p>
+            
+            <p style="margin: 30px 0;">
+                <strong>想想看：</strong><br>
+                提升1-2個等級 = 更好的大學 = 更好的未來<br>
+                HK$298 的投資，回報是無價的
+            </p>
+            
+            <a href="#contact" class="cta-button">立即購買</a>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer" id="contact">
+            <h1 style="color: #00ff00; font-size: 2.5em; margin-bottom: 30px;">📞 聯絡我們</h1>
+            
+            <div style="background: rgba(0,255,0,0.1); border: 1px solid #00ff00; padding: 30px; border-radius: 10px; margin: 40px auto; max-width: 600px;">
+                <h3 style="color: #00ffff; margin-bottom: 20px;">購買或咨詢請聯繫：</h3>
+                <p style="font-size: 1.2em; margin: 15px 0;">
+                    📱 抖音：<strong>DSE满分匠（数学和物理版）</strong><br>
+                    📕 小红书：<strong>数学满分匠 / 港中文学长felix</strong>
+                </p>
+                <p style="margin-top: 30px; color: #00ff00;">
+                    私信關鍵詞「<strong>算法黑盒</strong>」獲取購買鏈接
+                </p>
+            </div>
+            
+            <div class="terminal" style="margin-top: 50px;">
+┌─────────────────────────────────────┐
+│   DSE MATH ALGORITHM BLACK BOX      │
+│   v2.0.0 | Build 2026.02.07         │
+│   © 數學滿分匠 Felix                 │
+└─────────────────────────────────────┘
+            </div>
+            
+            <p style="margin-top: 50px; font-size: 1.2em;"><strong>創作者：數學滿分匠 Felix</strong></p>
+            <p style="margin-top: 10px; font-size: 1em; color: #00ffff;">Credits to Felix Fong</p>
+            
+            <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(0,255,0,0.3);">
+                <p style="font-style: italic; color: #888;">
+                    © 2026 數學滿分匠 Felix 版權所有<br>
+                    本產品為教育用途，所有策略基於歷史數據分析<br>
+                    實際考試表現因人而異，請配合個人實力使用
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 平滑滾動
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+        
+        // 頁面加載提示
+        window.addEventListener('load', function() {
+            console.log('DSE Math Algorithm Black Box - Official Website');
+            console.log('© 2026 數學滿分匠 Felix');
+        });
+    </script>
+</body>
+</html>

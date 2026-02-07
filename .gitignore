@@ -1,0 +1,24 @@
+# 忽略系統文件
+.DS_Store
+Thumbs.db
+
+# 忽略編輯器文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 忽略備份文件
+*.bak
+*.tmp
+*.log
+
+# 忽略 Node.js 相關（如果未來需要）
+node_modules/
+package-lock.json
+yarn.lock
+
+# 忽略個人筆記
+notes.txt
+todo.txt
