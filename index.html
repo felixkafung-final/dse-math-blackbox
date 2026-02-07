@@ -495,34 +495,179 @@
                 <h2>🔴 Phase 2: 策略跳題期 (關鍵操作！)</h2>
                 <h3>🚫 暫時跳過 (SKIP) Q16 & Q17</h3>
                 
-                <p><strong>跳題理由分析：</strong></p>
+                <p><strong>原因：</strong>這兩題經常是 <span class="highlight">相似三角形 (Similar Triangles) 或全等三角形 (Congruent Triangles)</span> 的複雜比例題，涉及：</p>
+                <ul>
+                    <li>平行四邊形、正方形中的面積比例關係</li>
+                    <li>複雜的輔助線構造與證明</li>
+                    <li>多重圖形的比例計算</li>
+                </ul>
+                
+                <p><strong>參考以下歷屆試題類型：</strong></p>
+                
+                <!-- 示例1：真實DSE試題 -->
+                <div style="background: linear-gradient(135deg, rgba(0,100,0,0.3) 0%, rgba(0,150,100,0.3) 100%); border: 2px solid #00ff00; border-radius: 15px; padding: 30px; margin: 20px 0;">
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <h4 style="color: #00ff00; font-size: 1.3em; margin-bottom: 15px;">📐 示例1：平行四邊形面積比例問題</h4>
+                        <p style="color: #ffff00; font-size: 0.9em;">(DSE 歷屆真題)</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.95); border-radius: 10px; padding: 25px; color: #000;">
+                        <p style="font-size: 1.05em; line-height: 1.8; margin-bottom: 15px;">
+                            <strong>17.</strong> In the figure, <em>PQRS</em> is a parallelogram. Let <em>X</em> be a point lying on <em>PQ</em>. 
+                            Denote the point of intersection of <em>PR</em> and <em>SX</em> by <em>Y</em>. 
+                            If the area of △<em>PXY</em> and the area of the quadrilateral <em>QRYX</em> are 32 cm² and 58 cm² respectively, 
+                            then the area of △<em>RSY</em> is
+                        </p>
+                        <div style="display: flex; gap: 30px; margin: 20px 0;">
+                            <div style="flex: 1;">
+                                <p><strong>A.</strong> 40 cm²</p>
+                                <p><strong>B.</strong> 50 cm²</p>
+                                <p><strong>C.</strong> 58 cm²</p>
+                                <p><strong>D.</strong> 72 cm²</p>
+                            </div>
+                            <div style="flex: 1; text-align: center;">
+                                <svg width="350" height="200" viewBox="0 0 350 200" style="border: 1px solid #ccc; background: white;">
+                                    <line x1="40" y1="170" x2="250" y2="170" stroke="#000" stroke-width="2.5"/>
+                                    <line x1="250" y1="170" x2="310" y2="40" stroke="#000" stroke-width="2.5"/>
+                                    <line x1="310" y1="40" x2="100" y2="40" stroke="#000" stroke-width="2.5"/>
+                                    <line x1="100" y1="40" x2="40" y2="170" stroke="#000" stroke-width="2.5"/>
+                                    <circle cx="200" cy="170" r="4" fill="#000"/>
+                                    <line x1="40" y1="170" x2="310" y2="40" stroke="#0066cc" stroke-width="2" stroke-dasharray="5,3"/>
+                                    <line x1="100" y1="40" x2="200" y2="170" stroke="#cc6600" stroke-width="2" stroke-dasharray="5,3"/>
+                                    <circle cx="157" cy="114" r="5" fill="red"/>
+                                    <text x="30" y="190" font-size="18" font-weight="bold">P</text>
+                                    <text x="255" y="190" font-size="18" font-weight="bold">Q</text>
+                                    <text x="315" y="35" font-size="18" font-weight="bold">R</text>
+                                    <text x="85" y="30" font-size="18" font-weight="bold">S</text>
+                                    <text x="200" y="190" font-size="18" font-weight="bold">X</text>
+                                    <text x="162" y="109" font-size="16" font-weight="bold" fill="red">Y</text>
+                                </svg>
+                            </div>
+                        </div>
+                        <p style="color: #cc0000; font-weight: bold; margin-top: 15px;">
+                            ⚠️ 這題需要運用相似三角形的面積比例關係，並建立多個方程求解
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- 示例2：正方形題目 -->
+                <div style="background: linear-gradient(135deg, rgba(0,100,0,0.3) 0%, rgba(0,150,100,0.3) 100%); border: 2px solid #00ff00; border-radius: 15px; padding: 30px; margin: 20px 0;">
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <h4 style="color: #00ff00; font-size: 1.3em; margin-bottom: 15px;">📐 示例2：正方形中的相似三角形</h4>
+                        <p style="color: #ffff00; font-size: 0.9em;">(DSE 歷屆真題)</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.95); border-radius: 10px; padding: 25px; color: #000;">
+                        <p style="font-size: 1.05em; line-height: 1.8; margin-bottom: 15px;">
+                            <strong>17.</strong> In the figure, <em>ABCD</em> is a square. Let <em>M</em> be the mid-point of <em>BC</em>. 
+                            <em>E</em> is a point lying on <em>AD</em> such that <em>AE : ED</em> = 3 : 1. 
+                            <em>F</em> is a point lying on <em>BC</em> produced such that <em>EF</em> // <em>AM</em>. 
+                            <em>CD</em> and <em>EF</em> intersect at the point <em>G</em> while <em>AM</em> and <em>BG</em> intersect at the point <em>H</em>. 
+                            If the area of △<em>BMH</em> is 4 cm², then the area of the trapezium <em>AEGH</em> is
+                        </p>
+                        <div style="display: flex; gap: 30px; margin: 20px 0;">
+                            <div style="flex: 1;">
+                                <p><strong>A.</strong> 12 cm²</p>
+                                <p><strong>B.</strong> 33 cm²</p>
+                                <p><strong>C.</strong> 39 cm²</p>
+                                <p><strong>D.</strong> 45 cm²</p>
+                            </div>
+                            <div style="flex: 1; text-align: center;">
+                                <svg width="400" height="420" viewBox="0 0 400 420" style="border: 1px solid #ccc; background: white;">
+                                    <line x1="60" y1="60" x2="300" y2="60" stroke="#000" stroke-width="3"/>
+                                    <line x1="60" y1="60" x2="60" y2="300" stroke="#000" stroke-width="3"/>
+                                    <line x1="60" y1="300" x2="360" y2="300" stroke="#000" stroke-width="3"/>
+                                    <line x1="300" y1="300" x2="300" y2="60" stroke="#000" stroke-width="3"/>
+                                    <circle cx="240" cy="60" r="4" fill="#000"/>
+                                    <circle cx="180" cy="300" r="4" fill="#000"/>
+                                    <line x1="60" y1="60" x2="180" y2="300" stroke="#0066cc" stroke-width="2.5"/>
+                                    <circle cx="360" cy="300" r="4" fill="#000"/>
+                                    <line x1="240" y1="60" x2="360" y2="300" stroke="#cc6600" stroke-width="2.5"/>
+                                    <circle cx="300" cy="180" r="5" fill="red"/>
+                                    <line x1="60" y1="300" x2="300" y2="180" stroke="#009900" stroke-width="2.5"/>
+                                    <circle cx="156" cy="252" r="5" fill="red"/>
+                                    <text x="45" y="55" font-size="18" font-weight="bold">A</text>
+                                    <text x="245" y="50" font-size="18" font-weight="bold">E</text>
+                                    <text x="305" y="55" font-size="18" font-weight="bold">D</text>
+                                    <text x="45" y="315" font-size="18" font-weight="bold">B</text>
+                                    <text x="175" y="320" font-size="18" font-weight="bold">M</text>
+                                    <text x="305" y="315" font-size="18" font-weight="bold">C</text>
+                                    <text x="365" y="315" font-size="18" font-weight="bold">F</text>
+                                    <text x="310" y="175" font-size="16" font-weight="bold" fill="red">G</text>
+                                    <text x="140" y="248" font-size="16" font-weight="bold" fill="red">H</text>
+                                </svg>
+                            </div>
+                        </div>
+                        <p style="color: #cc0000; font-weight: bold; margin-top: 15px;">
+                            ⚠️ 這題涉及平行線性質、相似三角形、梯形面積計算，需要多步推理
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- 示例3：平行四邊形題目 -->
+                <div style="background: linear-gradient(135deg, rgba(0,100,0,0.3) 0%, rgba(0,150,100,0.3) 100%); border: 2px solid #00ff00; border-radius: 15px; padding: 30px; margin: 20px 0;">
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <h4 style="color: #00ff00; font-size: 1.3em; margin-bottom: 15px;">📐 示例3：平行四邊形面積分割</h4>
+                        <p style="color: #ffff00; font-size: 0.9em;">(DSE 歷屆真題)</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.95); border-radius: 10px; padding: 25px; color: #000;">
+                        <p style="font-size: 1.05em; line-height: 1.8; margin-bottom: 15px;">
+                            <strong>16.</strong> In the figure, <em>ABCD</em> is a parallelogram. <em>E</em> is a point lying on <em>BC</em> such that 
+                            <em>BE : EC</em> = 5 : 3. <em>AE</em> and <em>BD</em> intersect at the point <em>F</em>. 
+                            If the area of △<em>ABF</em> is 120 cm², then the area of the quadrilateral <em>CDFE</em> is
+                        </p>
+                        <div style="display: flex; gap: 30px; margin: 20px 0;">
+                            <div style="flex: 1;">
+                                <p><strong>A.</strong> 237 cm²</p>
+                                <p><strong>B.</strong> 307 cm²</p>
+                                <p><strong>C.</strong> 312 cm²</p>
+                                <p><strong>D.</strong> 429 cm²</p>
+                            </div>
+                            <div style="flex: 1; text-align: center;">
+                                <svg width="380" height="240" viewBox="0 0 380 240" style="border: 1px solid #ccc; background: white;">
+                                    <line x1="60" y1="60" x2="300" y2="60" stroke="#000" stroke-width="3"/>
+                                    <line x1="60" y1="60" x2="40" y2="200" stroke="#000" stroke-width="3"/>
+                                    <line x1="40" y1="200" x2="280" y2="200" stroke="#000" stroke-width="3"/>
+                                    <line x1="280" y1="200" x2="300" y2="60" stroke="#000" stroke-width="3"/>
+                                    <circle cx="190" cy="200" r="4" fill="#000"/>
+                                    <line x1="60" y1="60" x2="190" y2="200" stroke="#0066cc" stroke-width="2.5" stroke-dasharray="6,4"/>
+                                    <line x1="40" y1="200" x2="300" y2="60" stroke="#cc6600" stroke-width="2.5" stroke-dasharray="6,4"/>
+                                    <circle cx="140" cy="146" r="5" fill="red"/>
+                                    <text x="55" y="50" font-size="18" font-weight="bold">A</text>
+                                    <text x="25" y="220" font-size="18" font-weight="bold">B</text>
+                                    <text x="285" y="220" font-size="18" font-weight="bold">C</text>
+                                    <text x="305" y="50" font-size="18" font-weight="bold">D</text>
+                                    <text x="190" y="220" font-size="18" font-weight="bold">E</text>
+                                    <text x="145" y="140" font-size="16" font-weight="bold" fill="red">F</text>
+                                </svg>
+                            </div>
+                        </div>
+                        <p style="color: #cc0000; font-weight: bold; margin-top: 15px;">
+                            ⚠️ 這題需要利用平行四邊形性質和相似三角形面積比求解四邊形面積
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- 總結提示 -->
+                <div style="background: rgba(0,0,0,0.3); border: 1px solid #00ff00; border-radius: 10px; padding: 20px; margin: 20px 0;">
+                    <p style="text-align: center; color: #00ffff; font-style: italic; font-size: 1.1em;">
+                        ⚠️ 以上三類題目都需要大量輔助線構造和證明步驟，建議先做其他題目
+                    </p>
+                </div>
+                
                 <table>
                     <thead>
                         <tr><th>評估項目</th><th>數據</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>常見題型</td><td>相似/全等三角形的複雜比例問題</td></tr>
-                        <tr><td>平均耗時</td><td>3-5 分鐘</td></tr>
-                        <tr><td>正確率</td><td>&lt; 40% (即使會做也容易錯)</td></tr>
-                        <tr><td>投資回報率</td><td>低 (高時間成本，低正確率)</td></tr>
+                        <tr><td>常見題型</td><td>相似/全等三角形比例問題</td></tr>
+                        <tr><td>平均耗時</td><td>3-4 分鐘</td></tr>
+                        <tr><td>正確率</td><td>&lt; 40%</td></tr>
                         <tr><td>策略決定</td><td><strong>先跳過，留待最後處理</strong></td></tr>
                     </tbody>
                 </table>
                 
-                <div class="warning">
-                    <strong>⚠️ 重要說明</strong><br><br>
-                    我們不是「不會做」這兩題，而是：<br>
-                    • 這兩題通常需要複雜的輔助線構造<br>
-                    • 即使做對，也要花3-5分鐘<br>
-                    • 同樣的時間可以做其他3-4題簡單題<br>
-                    • <strong>策略思維：先拿穩的分，最後再搏難題</strong>
-                </div>
-                
                 <h3>✅ 繼續做題</h3>
                 <div class="code-block">
-                    <pre>Q18 → Q30 (完成甲部其餘12題)
-目標時間: 再花20分鐘
-累計時間: 45分鐘完成甲部28題</pre>
+                    <pre>Q18 → Q30 (完成甲部其餘題目)</pre>
                 </div>
             </div>
             
@@ -829,7 +974,8 @@ Q41 → 填 A
             <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(0,255,0,0.3);">
                 <p><strong>📌 聯絡方式</strong></p>
                 <p>📱 抖音：DSE满分匠（数学和物理版）<br>
-                📕 小红书：数学满分匠 / 港中文学长felix</p>
+                📕 小红书：数学满分匠 / 港中文学长felix<br>
+                💬 微信：Fkf1013451274</p>
                 
                 <p style="margin-top: 30px; font-style: italic; color: #888;">
                     © 2026 數學滿分匠 Felix 版權所有<br>
