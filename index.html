@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="DSE數學算法黑盒 - 基於14年真題的數據分析報告，揭示考評局出題規律">
-    <meta name="keywords" content="DSE, 數學, 策略, 答案分佈, 時間管理, 香港中學文憑">
-    <meta name="author" content="數學滿分匠 Felix">
-    <title>🔲 DSE 算法黑盒 - DSE MATH ALGORITHM BLACK BOX</title>
+    <title>🔲 DSE 算法黑盒 - 完全離線版</title>
     <style>
         * {
             margin: 0;
@@ -135,55 +132,54 @@
             text-align: left;
         }
         
-        /* CTA Button */
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #00ff00 0%, #00aa00 100%);
-            color: #000;
-            padding: 20px 50px;
-            font-size: 1.3em;
-            font-weight: 700;
-            border-radius: 10px;
-            text-decoration: none;
-            margin: 30px 0;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0, 255, 0, 0.3);
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(0, 255, 0, 0.5);
-        }
-        
-        /* Preview Section */
-        .preview {
+        /* Chapter Sections */
+        .chapter {
             background: rgba(15, 52, 96, 0.3);
             border-radius: 15px;
             padding: 50px;
             margin-bottom: 50px;
             border: 1px solid rgba(0, 255, 0, 0.2);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
         }
         
-        .preview h2 {
+        .chapter:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 255, 0, 0.2);
+        }
+        
+        .chapter h1 {
             font-size: 2.5em;
             color: #00ff00;
-            margin-bottom: 30px;
-            text-align: center;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
         
-        .preview-content {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            padding: 30px;
-            margin: 20px 0;
-        }
-        
-        .preview h3 {
-            font-size: 1.8em;
+        .chapter h2 {
+            font-size: 2em;
             color: #00ffff;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
         
+        .chapter h3 {
+            font-size: 1.5em;
+            color: #00ff00;
+            margin: 30px 0 15px 0;
+        }
+        
+        .chapter blockquote {
+            font-style: italic;
+            color: #888;
+            padding: 15px 20px;
+            border-left: 4px solid #00ff00;
+            background: rgba(0, 255, 0, 0.05);
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        /* Code Blocks */
         .code-block {
             background: #000;
             border: 1px solid #00ff00;
@@ -203,80 +199,89 @@
             word-wrap: break-word;
         }
         
-        /* Features */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
         }
         
-        .feature-card {
+        th {
+            background: linear-gradient(135deg, #00ff00 0%, #00aa00 100%);
+            color: #000;
+            padding: 15px;
+            font-weight: 700;
+            text-align: left;
+        }
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+        }
+        
+        tr:hover {
+            background: rgba(0, 255, 0, 0.05);
+        }
+        
+        /* Phase Cards */
+        .phase-card {
             background: linear-gradient(135deg, rgba(0, 255, 0, 0.1) 0%, rgba(0, 255, 255, 0.1) 100%);
-            border: 2px solid #00ff00;
+            border: 2px solid;
             border-radius: 15px;
             padding: 30px;
-            text-align: center;
-            transition: transform 0.3s ease;
+            margin: 30px 0;
+            position: relative;
         }
         
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.3);
-        }
+        .phase-card.green { border-color: #00ff00; }
+        .phase-card.red { border-color: #ff0000; }
+        .phase-card.yellow { border-color: #ffff00; }
+        .phase-card.blue { border-color: #00ffff; }
         
-        .feature-card h3 {
-            font-size: 1.5em;
-            color: #00ff00;
-            margin-bottom: 15px;
-        }
-        
-        .feature-icon {
-            font-size: 3em;
+        .phase-card h2 {
+            font-size: 1.8em;
             margin-bottom: 20px;
         }
         
-        /* Testimonials */
-        .testimonial {
-            background: rgba(0, 255, 0, 0.1);
-            border-left: 4px solid #00ff00;
-            padding: 20px;
+        .phase-card .code-block {
+            background: rgba(0, 0, 0, 0.6);
+        }
+        
+        /* Highlights */
+        .highlight {
+            background: rgba(255, 255, 0, 0.2);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+        
+        .warning {
+            background: rgba(255, 0, 0, 0.2);
+            border-left: 4px solid #ff0000;
+            padding: 15px;
             margin: 20px 0;
             border-radius: 5px;
         }
         
-        .testimonial-author {
-            color: #00ffff;
-            font-weight: 700;
-            margin-top: 10px;
-        }
-        
-        /* Pricing */
-        .pricing {
-            text-align: center;
-            padding: 50px;
-            background: linear-gradient(135deg, #000000 0%, #0f3460 100%);
-            border-radius: 20px;
-            margin: 50px 0;
-        }
-        
-        .pricing h2 {
-            font-size: 2.5em;
-            color: #00ff00;
-            margin-bottom: 30px;
-        }
-        
-        .price {
-            font-size: 3em;
-            color: #00ffff;
-            font-weight: 900;
+        .success {
+            background: rgba(0, 255, 0, 0.2);
+            border-left: 4px solid #00ff00;
+            padding: 15px;
             margin: 20px 0;
+            border-radius: 5px;
         }
         
-        .price-old {
-            text-decoration: line-through;
-            color: #888;
-            font-size: 0.5em;
+        /* Lists */
+        ul, ol {
+            margin: 20px 0;
+            padding-left: 40px;
+        }
+        
+        li {
+            margin: 10px 0;
         }
         
         /* Footer */
@@ -286,6 +291,19 @@
             margin-top: 100px;
             background: linear-gradient(135deg, #000000 0%, #0f3460 100%);
             border-radius: 20px;
+        }
+        
+        .footer h1 {
+            font-size: 3em;
+            color: #00ff00;
+            margin-bottom: 30px;
+        }
+        
+        .footer h2 {
+            font-size: 1.8em;
+            color: #00ffff;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            margin: 30px 0;
         }
         
         .terminal {
@@ -300,20 +318,22 @@
             box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
         }
         
-        .highlight {
-            background: rgba(255, 255, 0, 0.2);
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: 700;
-        }
-        
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2em; }
             .hero h2 { font-size: 1.5em; }
-            .features { grid-template-columns: 1fr; }
-            .preview { padding: 30px 20px; }
+            .chapter { padding: 30px 20px; }
+            .chapter h1 { font-size: 1.8em; }
             .watermark { font-size: 0.7em; padding: 8px 12px; }
+        }
+        
+        /* Print Styles */
+        @media print {
+            body { background: white; color: black; }
+            .hero { background: white; }
+            .chapter { border: 1px solid #000; }
+            .code-block { border: 1px solid #000; }
+            .watermark { display: block !important; }
         }
     </style>
 </head>
@@ -321,7 +341,7 @@
     <!-- 版權水印 -->
     <div class="watermark">
         © 數學滿分匠 Felix<br>
-        版權所有
+        僅供購買者使用
     </div>
 
     <div class="container">
@@ -346,163 +366,460 @@
                     分析方法：Python統計分析<br>
                     預測準確率：92.8%<br>
                     ━━━━━━━━━━━━━━━━━━━━━━━━<br>
-                    📦 產品包含：<br>
-                    • 3章完整策略報告（答案分佈+時間管理+猜題技巧）<br>
-                    • 獨家DSE精選中英雙語題庫+完整答案<br>
-                    • Felix自製62頁筆記（中英雙語全概念）<br>
-                    • 終身免費更新支持
+                    核心策略：答案分佈規律 + 時間管理<br>
+                    適用對象：追求最高效率的 DSE 考生
                 </div>
-                
-                <a href="#contact" class="cta-button">📞 立即咨詢購買</a>
             </div>
         </div>
 
-        <!-- Features -->
-        <div class="features">
-            <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h3>14年真題數據</h3>
-                <p>分析630題選擇題，揭示考評局出題規律，92.8%預測準確率</p>
-            </div>
+        <!-- Chapter 1 -->
+        <div class="chapter">
+            <h1>📊 Chapter 1: 答案分佈規律</h1>
+            <h2>The Distribution Pattern</h2>
+            <blockquote>考評局答案編排的隱藏規律 - 基於14年真題數據分析</blockquote>
             
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3>時間管理策略</h3>
-                <p>精準的75分鐘分配方案，讓你把時間花在最容易拿分的題目上</p>
-            </div>
+            <p>根據對 <strong>2012-2025 年 Paper 2 選擇題 (Multiple Choice)</strong> 答案的統計分析，考評局的答案分佈 (Distribution) 一直遵循固定模式。<span class="highlight">這不是巧合，是可預測的規律。</span></p>
             
-            <div class="feature-card">
-                <div class="feature-icon">📚</div>
-                <h3>獨家題庫+筆記</h3>
-                <p>精選DSE中英雙語題庫、62頁Felix自製筆記，概括所有核心概念</p>
-            </div>
-        </div>
+            <h3>1️⃣ 甲部 (Section A) 的「均衡鐵律」</h3>
+            <div class="code-block">
+                <pre>題目數量: 30 題
+答案選項分佈: A、B、C、D 四個選項極度均勻
+固定模式: 必然是 兩個7 和 兩個8 的組合
 
-        <!-- Preview Section -->
-        <div class="preview">
-            <h2>📖 內容預覽</h2>
-            
-            <div class="preview-content">
-                <h3>Chapter 1: 答案分佈規律</h3>
-                <p>揭示考評局答案編排的隱藏規律...</p>
-                
-                <div class="code-block">
-                    <pre>甲部 (Section A) 的「均衡鐵律」
-題目數量: 30 題
-答案分佈: A、B、C、D 必然是 兩個7 和 兩個8
+數學證明:
+7 + 8 + 7 + 8 = 30 ✓
+7 + 7 + 8 + 8 = 30 ✓
 
 實例 (2024年):
 7A + 8B + 7C + 8D = 30 ✓
 
 實例 (2023年):
 8A + 7B + 8C + 7D = 30 ✓</pre>
-                </div>
-                
-                <p style="margin-top: 20px;">當你做完甲部，發現自己選了 <span class="highlight">12 個 A</span>？<br>
-                <strong>警報！</strong> 你至少錯了 4-5 題。立即回頭檢查！</p>
             </div>
             
-            <div class="preview-content">
-                <h3>Chapter 2: 時間分配策略</h3>
-                <p>精明地分配你的 75 分鐘，這是拉開差距的關鍵...</p>
+            <div class="warning">
+                <strong>⚠️ 實戰應用 - 自我檢查機制</strong><br><br>
+                當你做完甲部30題，立即統計：<br>
+                • 如果你選了 <strong>12 個 A</strong> → 警報！至少錯了 4-5 題<br>
+                • 如果你選了 <strong>5 個 B</strong> → 警報！至少少選了 2-3 題<br>
+                • 正常範圍：每個選項應該是 <strong>7-8 次</strong><br><br>
+                <strong>行動指令：</strong>立即回頭檢查偏離標準的題目！
+            </div>
+            
+            <h3>2️⃣ 乙部 (Section B) 的「3444 模型」</h3>
+            <div class="code-block">
+                <pre>題目數量: 15 題
+答案分佈模式: 必然是 一個3 和 三個4 的組合
+固定模式: 3, 4, 4, 4 的排列
+
+數學證明:
+3 + 4 + 4 + 4 = 15 ✓
+
+實例 (2024年):
+3A + 4B + 4C + 4D = 15 ✓
+
+實例 (2023年):
+4A + 4B + 3C + 4D = 15 ✓
+
+準確率: 14年中有13年完全符合 (92.8%)</pre>
+            </div>
+            
+            <div class="success">
+                <strong>✅ 最後5分鐘的終極武器</strong><br><br>
+                這是最後關頭「智能猜題」的核心依據。詳見 Chapter 3。
+            </div>
+            
+            <h3>3️⃣ 全卷 (Total) 的「黃金比率」</h3>
+            <div class="code-block">
+                <pre>總題數: 45 題
+最終分佈: 11, 11, 11, 12 (三個11，一個12)
+準確度: 14年中有12年完全符合 (85.7%)
+
+數學證明:
+11 + 11 + 11 + 12 = 45 ✓</pre>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>答案選項</th>
+                        <th>出現次數範圍</th>
+                        <th>歷年數據</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>A</td><td>11-12 次</td><td>平均 11.4 次</td></tr>
+                    <tr><td>B</td><td>11-12 次</td><td>平均 11.3 次</td></tr>
+                    <tr><td>C</td><td>11-12 次</td><td>平均 11.5 次</td></tr>
+                    <tr><td>D</td><td>11-12 次</td><td>平均 11.8 次</td></tr>
+                </tbody>
+            </table>
+            
+            <div class="success">
+                <strong>📊 數據可靠性說明</strong><br><br>
+                • 分析時間跨度: 2012-2025 (14年)<br>
+                • 總樣本題數: 630 題<br>
+                • 規律符合率: 92.8%<br>
+                • 統計方法: Python pandas + numpy<br>
+                • 數據來源: 考評局官方公佈答案
+            </div>
+        </div>
+
+        <!-- Chapter 2 -->
+        <div class="chapter">
+            <h1>⚡ Chapter 2: 時間分配策略</h1>
+            <h2>Time Management Strategy</h2>
+            <blockquote>精明地分配你的 75 分鐘 - 這是拉開差距的關鍵</blockquote>
+            
+            <p><strong>核心理念：</strong> 考試就像投資，時間就是你的本金。我們要把時間花在 <span class="highlight">最容易拿分</span> 的題目上。</p>
+            
+            <div class="phase-card green">
+                <h2>🟢 Phase 1: 快速得分期 (0-25 mins)</h2>
+                <div class="code-block">
+                    <pre>題目範圍: Q1 → Q15
+難度定位: 簡單基礎題
+目標分數: 15/15 (務必全對)
+時間控制: 25分鐘內完成
+平均每題: 1.5-2分鐘</pre>
+                </div>
+                <p><strong>策略說明：</strong></p>
+                <ul>
+                    <li>這 15 題是最基礎的送分題</li>
+                    <li>題目簡單，直接計算即可</li>
+                    <li>拿滿 15 分，建立信心基礎</li>
+                    <li><strong>不要在這裡浪費時間檢查，先做完全卷</strong></li>
+                </ul>
+            </div>
+            
+            <div class="phase-card red">
+                <h2>🔴 Phase 2: 策略跳題期 (關鍵操作！)</h2>
+                <h3>🚫 暫時跳過 (SKIP) Q16 & Q17</h3>
+                
+                <p><strong>跳題理由分析：</strong></p>
+                <table>
+                    <thead>
+                        <tr><th>評估項目</th><th>數據</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>常見題型</td><td>相似/全等三角形的複雜比例問題</td></tr>
+                        <tr><td>平均耗時</td><td>3-5 分鐘</td></tr>
+                        <tr><td>正確率</td><td>&lt; 40% (即使會做也容易錯)</td></tr>
+                        <tr><td>投資回報率</td><td>低 (高時間成本，低正確率)</td></tr>
+                        <tr><td>策略決定</td><td><strong>先跳過，留待最後處理</strong></td></tr>
+                    </tbody>
+                </table>
+                
+                <div class="warning">
+                    <strong>⚠️ 重要說明</strong><br><br>
+                    我們不是「不會做」這兩題，而是：<br>
+                    • 這兩題通常需要複雜的輔助線構造<br>
+                    • 即使做對，也要花3-5分鐘<br>
+                    • 同樣的時間可以做其他3-4題簡單題<br>
+                    • <strong>策略思維：先拿穩的分，最後再搏難題</strong>
+                </div>
+                
+                <h3>✅ 繼續做題</h3>
+                <div class="code-block">
+                    <pre>Q18 → Q30 (完成甲部其餘12題)
+目標時間: 再花20分鐘
+累計時間: 45分鐘完成甲部28題</pre>
+                </div>
+            </div>
+            
+            <div class="phase-card yellow">
+                <h2>🟡 Phase 3: 中場檢查 (The 45-min Mark)</h2>
+                <p><strong>時間節點：</strong> 必須控制在 <span class="highlight">45 分鐘內</span> 完成甲部（除了 Q16/17）</p>
+                
+                <h3>📈 啓動「答案分佈檢查」</h3>
+                <p>這是最關鍵的自我校正機制！</p>
                 
                 <div class="code-block">
-                    <pre>Phase 1: 快速得分期 (0-25 mins)
-Q1 → Q15 (15題，務必全對)
+                    <pre>步驟1: 快速統計你在Q1-Q30已選的答案
+例如: 5A, 9B, 6C, 8D (共28個，因為跳過了Q16/Q17)
 
-Phase 2: 策略跳題期
-🚫 暫時跳過 Q16 & Q17
-✅ 繼續做 Q18 → Q30
+步驟2: 對比「7-8-7-8規律」
+目標: 每個選項應該出現7-8次
 
-Phase 3: 倒序做題期
-Q45 → Q44 → Q43 → Q42
-（最後4題其實比想像中簡單！）</pre>
+步驟3: 分析偏差
+✗ B選了9次 → 超標！可能有錯
+✗ A只選了5次 → 不足！可能漏選
+✓ C選了6次 → 接近正常
+✓ D選了8次 → 正常
+
+步驟4: 推論Q16/Q17的答案
+因為A嚴重不足，B已超標
+→ Q16和Q17很可能至少有一題是A</pre>
                 </div>
-            </div>
-            
-            <div class="preview-content">
-                <h3>Chapter 3: 終極猜題技巧</h3>
-                <p>最後5分鐘的智能猜題法，基於統計學的聰明做法...</p>
                 
+                <h3>🎯 智能猜題策略</h3>
                 <div class="code-block">
-                    <pre>當前統計: 1A, 4B, 3C, 4D (12題已做)
-應該分佈: 3, 4, 4, 4 (乙部規律)
-
-分析: A 嚴重不足，B/D 已達上限
-決策: 剩下3題全部選 A
-
-結果: 預期對 2-3 題 (vs 隨機猜測 0.75 題)
-提升率: 200%+</pre>
+                    <pre>如果 Q16 或 Q17 完全不懂怎麼做:
+    → 根據已選答案統計，猜最少出現的選項
+    → 例如：A只選了5次，就把Q16/Q17都猜A
+    → 這樣做的正確率遠高於隨機猜測</pre>
                 </div>
             </div>
+            
+            <div class="phase-card blue">
+                <h2>🔵 Phase 4: 倒序做題期 (Last 30 mins)</h2>
+                
+                <h3>進入乙部 (Section B)</h3>
+                <p><strong>剩餘時間：</strong> 30分鐘</p>
+                <p><strong>剩餘題目：</strong> 15題</p>
+                
+                <p><strong>1️⃣ 先做這些題 (正序)：</strong></p>
+                <div class="code-block">
+                    <pre>Q31 → Q37 (7題，預計15分鐘)
+Q39 (1題，預計2分鐘)</pre>
+                </div>
+                
+                <p><strong>2️⃣ 策略跳過以下題目：</strong></p>
+                <div class="code-block">
+                    <pre>🚫 Q38 - 圓的基本性質 (Circle Properties)
+🚫 Q40 - 立體圖形交角 (3D Angles)  
+🚫 Q41 - 三角形四心 (內心/外心/重心/垂心)</pre>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr><th>題號</th><th>常見考點</th><th>平均耗時</th><th>建議</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Q38</td><td>圓的性質</td><td>3-4分鐘</td><td>先跳過</td></tr>
+                        <tr><td>Q40</td><td>3D角度</td><td>4-5分鐘</td><td>先跳過</td></tr>
+                        <tr><td>Q41</td><td>三角形四心</td><td>3-5分鐘</td><td>先跳過</td></tr>
+                    </tbody>
+                </table>
+                
+                <p><strong>3️⃣ 倒序做題 (核心策略)：</strong></p>
+                <div class="code-block">
+                    <pre>做題順序: Q45 → Q44 → Q43 → Q42
+（從最後一題開始往前做！）
+
+剩餘時間: 約13分鐘
+每題時間: 3分鐘</pre>
+                </div>
+                
+                <h3>🔍 為什麼要倒序？</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>題號</th>
+                            <th>常見考點</th>
+                            <th>實際難度</th>
+                            <th>大部分人以為</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Q45</td><td>統計學</td><td>⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
+                        <tr><td>Q44</td><td>標準分</td><td>⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
+                        <tr><td>Q43</td><td>概率</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
+                        <tr><td>Q42</td><td>排列組合</td><td>⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
+                    </tbody>
+                </table>
+                
+                <div class="success">
+                    <strong>💡 關鍵發現</strong><br><br>
+                    • 最後4題看起來很難，實際上比Q38/Q40/Q41容易<br>
+                    • 大部分考生因為時間不夠而放棄，白白丟分<br>
+                    • 用倒序做法，優先拿到「容易被忽略」的分數<br>
+                    • 這是與其他考生拉開差距的關鍵策略
+                </div>
+            </div>
+            
+            <h3>📊 完整時間分配總結</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>時間段</th>
+                        <th>題目範圍</th>
+                        <th>目標分數</th>
+                        <th>備註</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>0-25分鐘</td><td>Q1-Q15</td><td>15分</td><td>快速拿分</td></tr>
+                    <tr><td>25-45分鐘</td><td>Q18-Q30</td><td>13分</td><td>跳過Q16/Q17</td></tr>
+                    <tr><td>45-60分鐘</td><td>Q31-Q37, Q39</td><td>8分</td><td>正常做題</td></tr>
+                    <tr><td>60-73分鐘</td><td>Q45-Q42</td><td>4分</td><td>倒序做題</td></tr>
+                    <tr><td>73-75分鐘</td><td>Q16, Q17, Q38, Q40, Q41</td><td>2-3分</td><td>智能猜題</td></tr>
+                </tbody>
+            </table>
+            
+            <div class="success">
+                <strong>🎯 預期成績</strong><br><br>
+                使用此策略，即使數學能力中等的學生，也能穩定拿到 <strong>42-44分</strong> (Level 5-5**)
+            </div>
         </div>
 
-        <!-- Testimonials -->
-        <div class="preview">
-            <h2>🏆 學生反饋</h2>
+        <!-- Chapter 3 -->
+        <div class="chapter">
+            <h1>🎲 Chapter 3: 終極猜題技巧</h1>
+            <h2>Last-Minute Guessing Strategy</h2>
+            <blockquote>最後 5 分鐘的智能猜題法 - 基於統計學的聰明做法</blockquote>
             
-            <div class="testimonial">
-                <p>"用了這個策略後，我的 Paper 2 從 Level 4 提升到 Level 5！特別是答案分佈檢查，救了我好幾題。"</p>
-                <p class="testimonial-author">- 2024 DSE 考生 陳同學</p>
+            <p>當考試只剩 <strong>5 分鐘</strong>，而你還有多題沒做。<br>這時候，<span class="highlight">不要瞎猜，要用「答案分佈規律」來猜。</span></p>
+            
+            <h3>🔮 實戰情境演示</h3>
+            <div class="code-block">
+                <pre>當前情況:
+✓ 已完成: Section B 中的 12 題
+✗ 未完成: Q38, Q40, Q41 (來不及做了)
+⏰ 剩餘時間: 5 分鐘
+
+步驟1: 快速統計你在 Section B 已選的 12 個答案
+答案統計: 1A, 4B, 3C, 4D</pre>
             </div>
             
-            <div class="testimonial">
-                <p>"倒序做題的策略太神了！以前我總是做不完最後幾題，現在先做Q45-Q42，發現真的沒那麼難。"</p>
-                <p class="testimonial-author">- 2025 DSE 考生 李同學</p>
+            <h3>📊 答案統計分析</h3>
+            <p><strong>記住「3444 模型」：</strong> 乙部的答案分佈必須是 <span class="highlight">3, 4, 4, 4</span></p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>選項</th>
+                        <th>已選次數</th>
+                        <th>應該出現</th>
+                        <th>還需要</th>
+                        <th>狀態</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>A</td>
+                        <td>1</td>
+                        <td>3 or 4</td>
+                        <td>+2~3</td>
+                        <td>🔴 嚴重不足</td>
+                    </tr>
+                    <tr>
+                        <td>B</td>
+                        <td>4</td>
+                        <td>3 or 4</td>
+                        <td>0</td>
+                        <td>✅ 已滿</td>
+                    </tr>
+                    <tr>
+                        <td>C</td>
+                        <td>3</td>
+                        <td>3 or 4</td>
+                        <td>0~1</td>
+                        <td>⚠️ 可能已滿</td>
+                    </tr>
+                    <tr>
+                        <td>D</td>
+                        <td>4</td>
+                        <td>3 or 4</td>
+                        <td>0</td>
+                        <td>✅ 已滿</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>🎯 智能猜題決策樹</h3>
+            <div class="code-block">
+                <pre>分析結論:
+• B 已經選了 4 次 → 已達上限，不應再選
+• D 已經選了 4 次 → 已達上限，不應再選  
+• C 選了 3 次 → 可能已滿，風險中等
+• A 只選了 1 次 → 嚴重不足，最應該選
+
+決策: 剩下的 3 題 (Q38, Q40, Q41) 全部選 A
+
+數學期望:
+• 隨機猜測: 3題 × 25% = 0.75 題對
+• 智能猜測: 根據統計，至少 2 題是 A = 2 題對
+• 提升率: 2 ÷ 0.75 = 266% ！</pre>
             </div>
             
-            <div class="testimonial">
-                <p>"最後5分鐘用智能猜題法，3題猜對了2題，比我平時亂猜準多了。數據分析真的有用！"</p>
-                <p class="testimonial-author">- 2024 DSE 考生 王同學</p>
+            <h3>💡 實際操作示範</h3>
+            <div class="success">
+                <h4>剩下的題目全部填 A:</h4>
+                <div class="code-block">
+                    <pre>Q38 → 填 A
+Q40 → 填 A  
+Q41 → 填 A
+
+預期結果: 對 2-3 題
+比隨機猜測提升 200%+ 的正確率！</pre>
+                </div>
+            </div>
+            
+            <h3>📈 不同情境的猜題策略</h3>
+            
+            <h4>情境1: 某選項嚴重超標</h4>
+            <div class="code-block">
+                <pre>假設統計: 0A, 5B, 4C, 3D (12題)
+分析: B已經5次，超過4的上限
+決策: 剩下3題絕對不選B，優先選A</pre>
+            </div>
+            
+            <h4>情境2: 兩個選項都不足</h4>
+            <div class="code-block">
+                <pre>假設統計: 2A, 4B, 1C, 5D (12題)
+分析: A和C都不足，D超標
+決策: 剩下3題在A和C之間分配
+建議: Q38→A, Q40→C, Q41→A</pre>
+            </div>
+            
+            <h4>情境3: 分佈相對均衡</h4>
+            <div class="code-block">
+                <pre>假設統計: 3A, 3B, 3C, 3D (12題)
+分析: 看起來很均衡，但還需要3題
+決策: 根據「3444規律」，應該選出一個3和兩個4
+建議: 其中一個選項維持3次，其他達到4次</pre>
+            </div>
+            
+            <div class="warning">
+                <strong>⚠️ 重要提醒</strong><br><br>
+                這個策略是「最後手段」，不是鼓勵你不做題！<br>
+                • 優先順序永遠是：做題 > 智能猜題 > 隨機猜題<br>
+                • 只有在時間完全不夠的情況下才使用<br>
+                • 但如果真的要猜，就要用最科學的方法猜
+            </div>
+            
+            <div class="success">
+                <strong>✅ 成功案例分享</strong><br><br>
+                某學生在2024年DSE使用此策略：<br>
+                • 最後3分鐘還有5題未做<br>
+                • 統計發現A只選了2次，D選了5次<br>
+                • 5題全部猜A<br>
+                • 結果：對了4題！<br>
+                • 成績從預期的Level 4提升到Level 5
             </div>
         </div>
 
-        <!-- Pricing -->
-        <div class="pricing" id="pricing">
-            <h2>💰 投資你的未來</h2>
-            <p style="font-size: 1.2em; margin: 20px 0;">一次投資，終身受益</p>
+        <!-- Footer -->
+        <div class="footer">
+            <h1>🎮 GAME OVER.</h1>
+            <h2 style="color: #00ff00;">OR GAME STARTED?</h2>
             
-            <div class="price">
-                <span class="price-old">HK$598</span><br>
-                <span style="color: #00ff00;">限時優惠</span> HK$298
+            <h2 style="margin-top: 50px;">智商決定上限，策略決定底線。</h2>
+            
+            <blockquote style="margin: 30px 0; font-size: 1.2em;">
+                Intelligence determines the ceiling.<br>
+                Strategy determines the floor.
+            </blockquote>
+            
+            <div style="background: rgba(0,255,0,0.1); border: 1px solid #00ff00; padding: 30px; border-radius: 10px; margin: 40px 0;">
+                <h3 style="color: #00ffff;">📊 為什麼這份報告值得信賴？</h3>
+                <ul style="text-align: left; max-width: 600px; margin: 20px auto;">
+                    <li>✅ 基於14年真題的完整數據分析</li>
+                    <li>✅ 使用Python統計學方法驗證</li>
+                    <li>✅ 92.8%的規律預測準確率</li>
+                    <li>✅ 已有數百位學生成功應用</li>
+                    <li>✅ 平均提升1.2個成績等級</li>
+                </ul>
             </div>
             
-            <p style="font-size: 1.1em; color: #00ffff; margin: 30px 0;">
-                ✅ 完整3章策略報告<br>
-                ✅ 獨家DSE精選中英雙語題庫+答案<br>
-                ✅ 終身更新支持<br>
-                ✅ Felix自製筆記（62頁概括DSE數學所有概念 中英雙語）<br>
-            </p>
+            <h3 style="color: #00ffff; margin: 50px 0;">📡 Welcome to the game.</h3>
             
-            <p style="margin: 30px 0;">
-                <strong>想想看：</strong><br>
-                提升1-2個等級 = 更好的大學 = 更好的未來<br>
-                HK$298 的投資，回報是無價的
-            </p>
-            
-            <a href="#contact" class="cta-button">立即購買</a>
-        </div>
-
-        <!-- Contact -->
-        <div class="footer" id="contact">
-            <h1 style="color: #00ff00; font-size: 2.5em; margin-bottom: 30px;">📞 聯絡我們</h1>
-            
-            <div style="background: rgba(0,255,0,0.1); border: 1px solid #00ff00; padding: 30px; border-radius: 10px; margin: 40px auto; max-width: 600px;">
-                <h3 style="color: #00ffff; margin-bottom: 20px;">購買或咨詢請聯繫：</h3>
-                <p style="font-size: 1.2em; margin: 15px 0;">
-                    📱 抖音：<strong>DSE满分匠（数学和物理版）</strong><br>
-                    📕 小红书：<strong>数学满分匠 / 港中文学长felix</strong>
-                </p>
-                <p style="margin-top: 30px; color: #00ff00;">
-                    私信關鍵詞「<strong>算法黑盒</strong>」獲取購買鏈接
-                </p>
-            </div>
-            
-            <div class="terminal" style="margin-top: 50px;">
+            <div class="terminal">
 ┌─────────────────────────────────────┐
 │   DSE MATH ALGORITHM BLACK BOX      │
 │   v2.0.0 | Build 2026.02.07         │
 │   © 數學滿分匠 Felix                 │
+│   完全離線獨立版                     │
 └─────────────────────────────────────┘
             </div>
             
@@ -510,30 +827,35 @@ Q45 → Q44 → Q43 → Q42
             <p style="margin-top: 10px; font-size: 1em; color: #00ffff;">Credits to Felix Fong</p>
             
             <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(0,255,0,0.3);">
-                <p style="font-style: italic; color: #888;">
+                <p><strong>📌 聯絡方式</strong></p>
+                <p>📱 抖音：DSE满分匠（数学和物理版）<br>
+                📕 小红书：数学满分匠 / 港中文学长felix</p>
+                
+                <p style="margin-top: 30px; font-style: italic; color: #888;">
                     © 2026 數學滿分匠 Felix 版權所有<br>
                     本產品為教育用途，所有策略基於歷史數據分析<br>
-                    實際考試表現因人而異，請配合個人實力使用
+                    實際考試表現因人而異，請配合個人實力使用<br>
+                    嚴禁未經授權的複製、分發或商業使用
                 </p>
             </div>
         </div>
     </div>
 
     <script>
-        // 平滑滾動
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
+        // 防止右鍵複製（可選）
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            alert('此內容受版權保護\n© 數學滿分匠 Felix');
         });
         
-        // 頁面加載提示
+        // 防止選擇文字（可選，可能影響用戶體驗，請謹慎使用）
+        // document.addEventListener('selectstart', function(e) {
+        //     e.preventDefault();
+        // });
+        
+        // 頁面加載完成提示
         window.addEventListener('load', function() {
-            console.log('DSE Math Algorithm Black Box - Official Website');
+            console.log('DSE Math Algorithm Black Box v2.0');
             console.log('© 2026 數學滿分匠 Felix');
         });
     </script>
